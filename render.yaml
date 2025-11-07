@@ -1,11 +1,23 @@
 services:
   - type: web
-    name: Web-scraper
+    name: privofy-webscraper
     env: python
     plan: free
+    region: oregon   # change if needed
+
     buildCommand: |
+      apt-get update
+      apt-get install -y wget unzip
       chmod +x install_chrome.sh
       ./install_chrome.sh
       pip install -r requirements.txt
-    startCommand: gunicorn app:app --timeout 120
 
+    startCommand: gunicorn app:app --workers 3 --timeout 200
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10
+
+    disk:
+      name: chrome-cache
+      mountPath: /opt/render

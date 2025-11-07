@@ -1,0 +1,7 @@
+Flask==3.0.3
+Flask-Cors==4.0.0
+requests
+selenium
+webdriver-manager
+beautifulsoup4
+gunicorn

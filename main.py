@@ -13,7 +13,7 @@ CORS(app)
 def health():
     return jsonify({"status": "ok", "message": "Backend active"})
 
-@app.route("/api/GetData", methods=["GET"])
+@app.route("/api/GetData", methods=["POST"])
 def get_ground():
     """
     Fetches all content from a page, bypassing general web scraping stoping methords
@@ -74,4 +74,5 @@ def get_ground():
     
 
 if __name__ == "__main__":
+
     app.run(host="0.0.0.0", port=5000)

@@ -28,21 +28,17 @@ def get_ground():
         print('1')
         # Set up Chrome options to run "headless" (without a visible window)
         chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.add_argument("window-size=1920x1080")
-        chrome_options = Options()
         chrome_options.binary_location = "/usr/bin/google-chrome"
+
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
-        chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--headless=new")
+        chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--window-size=1920x1080")
 
         service = Service("/usr/local/bin/chromedriver")
-        print('2')
-        # Initialize the Chrome driver
         driver = webdriver.Chrome(service=service, options=chrome_options)
+
         print('3')
         # Open the URL
         driver.get(url)
@@ -74,5 +70,4 @@ def get_ground():
     
 
 if __name__ == "__main__":
-
     app.run(host="0.0.0.0", port=5000)

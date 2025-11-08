@@ -3,7 +3,6 @@ from flask_cors import CORS
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 
 app = Flask(__name__)
@@ -71,3 +70,4 @@ def get_ground():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+

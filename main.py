@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
+import os
 
 app = Flask(__name__)
 # CORS(app,origins="https://privofy.netlify.app")
@@ -24,6 +25,10 @@ def get_ground():
     #GET
     # url = request.args.get("URL")
     try:
+        print("Checking files..")
+        print("Chrome exists:", os.path.isfile("/usr/bin/google-chrome"))
+        print("Driver exists:", os.path.isfile("/usr/local/bin/chromedriver"))
+
         print('1')
         # Set up Chrome options to run "headless" (without a visible window)
         chrome_options = Options()
@@ -65,9 +70,14 @@ def get_ground():
         return jsonify({'Text':clean_text})
 
     except Exception as e:
+        import traceback
+        print("🔴 ERROR:")
+        traceback.print_exc()    # prints full error in Render logs
         return jsonify({"error": f"Error fetching data: {e}"}), 500
+
     
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+
 
